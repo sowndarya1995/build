@@ -4,8 +4,9 @@ node
      
   stage('CheckOutCode') 
   {
-  git credentialsId: '39455f84-7623-45c3-9717-0b5fd14598e2', url: 'https://github.com/sowndarya41195/build.git'
+  git branch: 'development', credentialsId: '39455f84-7623-45c3-9717-0b5fd14598e2', url: 'https://github.com/sowndarya41195/maven-web-application.git'
   }
+ 
    
   stage('Build')
    {
