@@ -25,6 +25,6 @@ node
    
    stage('DeployAppIntoTomcat')
     {
-    deploy adapters: [tomcat9(credentialsId: '79803418-81bb-4bb4-9db2-8750cc1560cc', path: 'maven-web-application', url: 'http://13.233.65.238:8080/')], contextPath: 'maven-web-aplication', onFailure: false, war: '**/*.war'
+    deploy adapters: [tomcat9(credentialsId: '79803418-81bb-4bb4-9db2-8750cc1560cc', path: '', url: 'http://13.233.65.238:8080/')], contextPath: '/opt/apache-tomcat-9.0.31/webapps', onFailure: false, war: '**/*.war'
      }
 }
