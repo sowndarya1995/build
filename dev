@@ -25,6 +25,9 @@ node
    
    stage('DeployAppIntoTomcat')
     {
-    deploy adapters: [tomcat9(credentialsId: '79803418-81bb-4bb4-9db2-8750cc1560cc', path: '', url: 'http://13.233.65.238:8080/')], contextPath: '/opt/apache-tomcat-9.0.31/webapps', onFailure: false, war: '**/*.war'
+    sshagent(['5e4c8b9c-58b8-4373-94be-b7f41b55085d'])
+     {
+     sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.233.65.238:/opt/apache-tomcat-9.0.31/webapps/" 
      }
+     
 }
