@@ -4,7 +4,7 @@ node
      
   stage('CheckOutCode') 
   {
-  
+  git credentialsId: '39455f84-7623-45c3-9717-0b5fd14598e2', url: 'https://github.com/sowndarya41195/build.git'
   }
    
   stage('Build')
@@ -24,16 +24,6 @@ node
    
    stage('DeployAppIntoTomcat')
    {
-      sshagent(['e20b142e-bf67-4dd6-bda0-ebc8093bb90b']) 
-   {
-     sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@13.233.65.238:/opt/apache-tomcat-9.0.31/webapps/" 
+     deploy adapters: [tomcat9(credentialsId: '79803418-81bb-4bb4-9db2-8750cc1560cc', path: '', url: 'http://13.233.65.238/')], contextPath: 'maven-web-application', onFailure: false, war: '**/*.war'
    }
    }
-   
-    stage('SendEmailNotification')
-   {
-   emailext body: '''Build is over
-
-   Regards,
-   Mithun Technologies,
-   9980923226.''', subject: 'Build is over', to: 'devopstrainingblr@gmail.com,bhask
